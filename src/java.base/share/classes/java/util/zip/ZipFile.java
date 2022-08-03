@@ -1327,7 +1327,8 @@ class ZipFile implements ZipConstants, Closeable {
             manifestNum = 0;
         }
 
-        private static final int BUF_SIZE = 8192;
+        // changing this to (2^31) - 1 to be inline with zip_util.c readFullyAt in JDK8
+        private static final int BUF_SIZE = 2147483647;
         private final int readFullyAt(byte[] buf, int off, int len, long pos)
             throws IOException
         {
